@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  roles:
+    - disable-selinux
+    - docker
+  tasks:
+    - debug: msg={{ ansible_port }}
+    - debug: msg={{ ansible_host }}
+    - debug: msg={{ ansible_facts }}
+    - debug: msg={{ ansible_ssh_host }}
+    - debug: msg={{ inventory_hostname }}
+    - debug: msg={{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}
